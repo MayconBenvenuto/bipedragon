@@ -47,27 +47,26 @@ app.post('/login', (req, res) => {
   res.redirect('/home');
 });
 
-// Middleware para verificar o nível de permissão e passar o nível para o frontend
-app.use((req, res, next) => {
-  res.locals.nivel = req.session.nivel || 'visitante'; // Define um nível padrão se não houver sessão
-  next();
-});
-
-// Rota para a página inicial
-app.get('/', (req, res) => {
-  res.redirect('/home');
-});
-
-// Rota para a página home
-app.get('/home', (req, res) => {
+// Middleware para verificar o nível de permissão
+function verificarPermissao(req, res, next) {
   if (!req.session.nivel) {
     return res.redirect('/login');
   }
+  next();
+}
+
+// Rota para obter o nível do usuário
+app.get('/api/usuario', verificarPermissao, (req, res) => {
+  res.json({ nivel: req.session.nivel });
+});
+
+// Rota para a página home
+app.get('/home', verificarPermissao, (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'home.html'));
 });
 
 // Rota para a página ata.html
-app.get('/ata.html', (req, res) => {
+app.get('/ata.html', verificarPermissao, (req, res) => {
   if (req.session.nivel === 'diretor' || req.session.nivel === 'gerente') {
     res.sendFile(path.join(__dirname, 'public', 'ata.html'));
   } else {
@@ -76,7 +75,7 @@ app.get('/ata.html', (req, res) => {
 });
 
 // Rota para as outras páginas do site
-app.get('/dashboard/:pagina', (req, res) => {
+app.get('/dashboard/:pagina', verificarPermissao, (req, res) => {
   if (req.session.nivel === 'diretor') {
     res.sendFile(path.join(__dirname, 'public', req.params.pagina));
   } else {
@@ -85,7 +84,7 @@ app.get('/dashboard/:pagina', (req, res) => {
 });
 
 // Inicia o servidor
-const porta = process.env.PORT || 3000; // Atualizado para usar a porta do ambiente se disponível
+const porta = 3000;
 app.listen(porta, () => {
   console.log(`Servidor iniciado na porta ${porta}`);
 });
