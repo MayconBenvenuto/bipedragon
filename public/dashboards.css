@@ -1,0 +1,108 @@
+/* Estilos básicos para o corpo */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden; /* Remove a rolagem horizontal e vertical */   
+    min-height: 100vh; /* Garante que o corpo ocupe pelo menos a altura total da tela */
+}
+
+/* Container principal */
+.container {
+    background-color: #fff;
+    padding: 0; /* Remove o padding para que o iframe possa usar toda a largura e altura disponíveis */
+    border-radius: 0; /* Remove o border-radius para garantir que o iframe ocupe toda a área */
+    box-shadow: none; /* Remove o box-shadow para um visual mais limpo */
+    margin: 0; /* Remove a margem para que o iframe possa usar toda a área da tela */
+    width: 100%; /* Ajusta a largura para 100% */
+    height: 100vh; /* Ajusta a altura para 100% da altura da tela */
+    display: flex;
+    flex-direction: column; /* Alinha os itens na coluna */
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilo para o iframe */
+iframe {
+    width: 100%; /* Ajusta a largura para 100% do container */
+    height: calc(100vh - 50px); /* Ajusta a altura para 100% menos a altura do botão home */
+    border: none;
+}
+
+/* Botões */
+.button-container {
+    position: absolute; /* Posiciona o container de botões de forma absoluta */
+    top: 10px; /* Define a distância do topo */
+    left: 30%; /* Centraliza horizontalmente */
+   /* transform: translateX(-30%); /* Ajusta o alinhamento centralizado */
+    display: flex;
+    flex-direction: column; /* Alinha botões verticalmente */
+    gap: 15px; /* Espaçamento entre botões */
+    align-items: center;
+    z-index: 100; /* Garante que os botões fiquem acima do conteúdo do iframe */
+}
+
+.home-button img {
+    width: 40px; /* Ajusta a largura da imagem do botão home */
+    height: auto; /* Mantém a proporção da imagem */
+    margin: 20px; /* Espaçamento abaixo da imagem do botão home */
+}
+
+/* Estilo para o rodapé */
+footer {
+    margin-top: 20px;
+    padding: 10px;
+    text-align: center;
+    color: #888;
+    width: 100%;
+}
+
+/* Responsividade */
+@media (max-width: 1200px) {
+    .container {
+        width: 100%;
+        height: 100vh; /* Ajusta a altura para 100% da altura da tela */
+        overflow: hidden; /* Remove a rolagem horizontal e vertical */   
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 20px; /* Adiciona padding horizontal para evitar que o conteúdo toque nas bordas */
+        overflow: hidden; /* Remove a rolagem horizontal e vertical */   
+    }
+    h1 {
+        font-size: 2em;
+        margin: 0;
+    }
+    .button-container {
+        top: 10px;
+    }
+    .button {
+        max-width: 250px;
+        margin: 10px 0; /* Adiciona margem entre botões */
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 0 10px; /* Adiciona padding horizontal menor para dispositivos muito pequenos */
+        overflow: hidden; /* Remove a rolagem horizontal e vertical */   
+    }
+    h1 {
+        font-size: 1.5em;
+    }
+    .button-container {
+        top: 5px; /* Ajusta a posição dos botões para telas menores */
+    }
+    .button {
+        max-width: 200px;
+    }
+    iframe {
+        height: calc(100vh - 50px); /* Ajusta a altura para 100% menos a altura do botão home */
+    }
+}

@@ -1,0 +1,143 @@
+/* Estilos básicos para o corpo */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden; /* Remove a rolagem horizontal e vertical */   
+    background: linear-gradient(to right, rgba(65, 1, 1, 0.8), rgba(202, 169, 19, 0.8)); /* Fundo com transparência */
+}
+
+/* Sobreposição com transparência */
+body::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100vh; /* Ajusta a altura da sobreposição para cobrir toda a tela */
+    background-image: url('imagens/logochevy.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    z-index: -10; /* Coloca a imagem de fundo atrás de todo o conteúdo */
+    opacity: 0.2; /* Ajusta a opacidade para dar um efeito de transparência */
+}
+
+/* Estilo para o cabeçalho */
+header {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%; /* Ajusta a largura do cabeçalho para 100% */
+    text-align: center;
+    padding: 10px 0; /* Reduz o padding para aproximar o cabeçalho do topo */
+    z-index: 100; /* Garante que o cabeçalho esteja visível sobre todos os outros elementos */
+}
+
+/* Estilo para a imagem do logo */
+/* Estilo para a imagem do logo */
+.logo {
+    width: 100%; /* Ajusta a largura do logo para 100% */
+    max-width: 900px; /* Limita a largura máxima para a imagem do logo */
+    margin: 0 auto; /* Centraliza o logo horizontalmente */
+    position: absolute; /* Posiciona o logo de forma absoluta */
+    top: -800%; /* Posiciona o logo no topo da página */
+    left: 50%;
+    transform: translateX(-50%); /* Centraliza o logo horizontalmente */
+    z-index: 1; /* Garante que o logo esteja à frente de outros elementos */
+}
+
+
+/* Estilo para o container principal */
+.container {
+    padding: 20px; /* Ajusta o padding para melhor ajuste em dispositivos móveis */
+    width: 90%;
+    max-width: 1200px; /* Aumenta a largura máxima para telas maiores */
+    text-align: center;
+    margin: 10%; /* Ajusta a margem para mais próximo do cabeçalho */
+    position: relative;
+    z-index: 102; /* Garante que o conteúdo esteja à frente dos elementos de fundo */
+}
+
+/* Estilo para a seção de dashboards */
+#dashboards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Espaço entre os dashboards */
+    margin-top: 20px;
+}
+
+/* Estilo para cada dashboard */
+.dashboard {
+    flex: 1 1 250px; /* Ajusta a largura mínima para se adaptar ao tamanho da tela */
+    margin: 10px;
+    z-index: 103; /* Garante que os dashboards estejam à frente dos elementos de fundo */
+    transition: transform 0.2s ease;
+}
+
+/* Botões de dashboard */
+.btn-2 {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #caa913;
+    color: #410101;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: large; /* Ajusta o tamanho da fonte */
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 10px; /* Reduz a margem superior para aproximar os botões do topo */
+    z-index: 104; /* Garante que os botões estejam à frente de outros elementos */
+    position: relative; /* Para garantir que o z-index funcione */
+}
+
+.btn-2:hover {
+    background-color: #FF8F00;
+    transform: scale(1.05);
+}
+
+.btn-2:active {
+    background-color: #FF6F00;
+}
+
+/* Estilo para o rodapé */
+footer {
+    padding: 44%; /* Ajusta o padding para o rodapé */
+    text-align: center;
+    color: #020202;
+    font-size: 0.9em;
+    z-index: 105; /* Garante que o rodapé esteja à frente dos elementos de fundo */
+    position: relative; /* Para garantir que o z-index funcione */
+}
+
+/* Responsividade para dispositivos móveis */
+@media (max-width: 768px) {
+    .logo {
+        max-width: 80%; /* Ajusta a largura máxima do logo para telas menores */
+        top: 0; /* Garante que o logo fique no topo */
+    }
+
+    .logo-background {
+        height: 80px; /* Ajusta a altura da camada de fundo para telas menores */
+        top: 100%; /* Garante que fique abaixo do logo */
+    }
+    .container{
+        margin: 70px; /* Ajusta a margem para telas menores */
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        max-width: 70%; /* Ajusta a largura máxima do logo para telas muito pequenas */
+    }
+
+    .logo-background {
+        height: 60px; /* Ajusta a altura da camada de fundo para telas muito pequenas */
+    }
+}
