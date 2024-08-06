@@ -84,7 +84,6 @@ app.get('/dashboard/:pagina', verificarPermissao, (req, res) => {
 });
 
 // Inicia o servidor
-const porta = 3000;
 app.listen(porta, () => {
   console.log(`Servidor iniciado na porta ${porta}`);
 });
