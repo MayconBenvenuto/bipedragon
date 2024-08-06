@@ -20,9 +20,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Configura um banco de dados simples em memória para armazenar usuários
 const usuarios = {
-  'maycon': { senha: 'senha123', nivel: 'diretor' },
-  'leo': { senha: 'usuario123', nivel: 'gerente' },
-  'tiago': { senha: 'pedragon2024@', nivel: 'vendedor' }
+  'maycon': { senha: 'Pedr@gon2024', nivel: 'diretor' },
+  'leo.coelho': { senha: 'pedragon@2024', nivel: 'diretor' },
+  'tiago.vilaca': { senha: 'pedragon2024@', nivel: 'diretor' },
+  'vendedor':{senha: 'vendedor', nivel: 'vendedor'},
+  'gerente': {senha: 'gerente', nivel: 'gerente'}
 };
 
 // Rota para a página de login
