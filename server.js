@@ -60,6 +60,11 @@ app.get('/api/usuario', verificarPermissao, (req, res) => {
   res.json({ nivel: req.session.nivel });
 });
 
+// Rota para a página inicial (redireciona para /home)
+app.get('/', (req, res) => {
+  res.redirect('/home');
+});
+
 // Rota para a página home
 app.get('/home', verificarPermissao, (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'home.html'));
@@ -84,7 +89,7 @@ app.get('/dashboard/:pagina', verificarPermissao, (req, res) => {
 });
 
 // Inicia o servidor
-const porta = 3000;
+const porta = process.env.PORT || 3000;
 app.listen(porta, () => {
   console.log(`Servidor iniciado na porta ${porta}`);
 });
