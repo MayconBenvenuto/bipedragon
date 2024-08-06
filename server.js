@@ -53,6 +53,11 @@ app.use((req, res, next) => {
   next();
 });
 
+// Rota para a página inicial
+app.get('/', (req, res) => {
+  res.redirect('/home');
+});
+
 // Rota para a página home
 app.get('/home', (req, res) => {
   if (!req.session.nivel) {
