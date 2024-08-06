@@ -2,7 +2,9 @@
   "name": "site-bipedragon",
   "version": "1.0.0",
   "main": "server.js",
-  "scripts": {},
+  "scripts": {
+    "start": "node server.js"
+  },
   "author": "Maycon Benvenuto",
   "license": "ISC",
   "description": "",

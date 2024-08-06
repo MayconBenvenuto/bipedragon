@@ -20,9 +20,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Configura um banco de dados simples em memória para armazenar usuários
 const usuarios = {
-  'maycon': { senha: 'Pedragon@2024', nivel: 'diretor' },
-  'leo': { senha: 'Pedragon2024@', nivel: 'gerente' },
-  'tiago': { senha: 'Pedragon@rui2024', nivel: 'vendedor' }
+  'maycon': { senha: 'senha123', nivel: 'diretor' },
+  'leo': { senha: 'usuario123', nivel: 'gerente' },
+  'tiago': { senha: 'pedragon2024@', nivel: 'vendedor' }
 };
 
 // Rota para a página de login
@@ -47,26 +47,22 @@ app.post('/login', (req, res) => {
   res.redirect('/home');
 });
 
-// Middleware para verificar o nível de permissão
-function verificarPermissao(req, res, next) {
-  if (!req.session.nivel) {
-    return res.redirect('/login');
-  }
-  next();
-}
-
-// Rota para obter o nível do usuário
-app.get('/api/usuario', verificarPermissao, (req, res) => {
-  res.json({ nivel: req.session.nivel });
+// Middleware para verificar o nível de permissão e passar o nível para o frontend
+app.use((req, res, next) => {
+    res.locals.nivel = req.session.nivel; // Passa o nível para o frontend
+    next();
 });
 
 // Rota para a página home
-app.get('/home', verificarPermissao, (req, res) => {
+app.get('/home', (req, res) => {
+  if (!req.session.nivel) {
+    return res.redirect('/login');
+  }
   res.sendFile(path.join(__dirname, 'public', 'home.html'));
 });
 
 // Rota para a página ata.html
-app.get('/ata.html', verificarPermissao, (req, res) => {
+app.get('/ata.html', (req, res) => {
   if (req.session.nivel === 'diretor' || req.session.nivel === 'gerente') {
     res.sendFile(path.join(__dirname, 'public', 'ata.html'));
   } else {
@@ -75,7 +71,7 @@ app.get('/ata.html', verificarPermissao, (req, res) => {
 });
 
 // Rota para as outras páginas do site
-app.get('/dashboard/:pagina', verificarPermissao, (req, res) => {
+app.get('/dashboard/:pagina', (req, res) => {
   if (req.session.nivel === 'diretor') {
     res.sendFile(path.join(__dirname, 'public', req.params.pagina));
   } else {
@@ -83,7 +79,8 @@ app.get('/dashboard/:pagina', verificarPermissao, (req, res) => {
   }
 });
 
-// Inicia o servidor
+// Define a porta a partir da variável de ambiente ou usa 3000 como padrão
+const porta = process.env.PORT || 3000;
 app.listen(porta, () => {
   console.log(`Servidor iniciado na porta ${porta}`);
 });
