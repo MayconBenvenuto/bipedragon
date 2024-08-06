@@ -25,6 +25,11 @@ const usuarios = {
   'tiago': { senha: 'pedragon2024@', nivel: 'vendedor' }
 };
 
+// Rota para a URL raiz
+app.get('/', (req, res) => {
+  res.redirect('/home'); // Redireciona para a página /home
+});
+
 // Rota para a página de login
 app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'login.html'));
