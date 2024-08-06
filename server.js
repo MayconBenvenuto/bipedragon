@@ -25,11 +25,6 @@ const usuarios = {
   'tiago': { senha: 'pedragon2024@', nivel: 'vendedor' }
 };
 
-// Rota para a URL raiz
-app.get('/', (req, res) => {
-  res.redirect('/home'); // Redireciona para a página /home
-});
-
 // Rota para a página de login
 app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'login.html'));
@@ -54,8 +49,8 @@ app.post('/login', (req, res) => {
 
 // Middleware para verificar o nível de permissão e passar o nível para o frontend
 app.use((req, res, next) => {
-    res.locals.nivel = req.session.nivel; // Passa o nível para o frontend
-    next();
+  res.locals.nivel = req.session.nivel || 'visitante'; // Define um nível padrão se não houver sessão
+  next();
 });
 
 // Rota para a página home
@@ -84,8 +79,8 @@ app.get('/dashboard/:pagina', (req, res) => {
   }
 });
 
-// Define a porta a partir da variável de ambiente ou usa 3000 como padrão
-const porta = process.env.PORT || 3000;
+// Inicia o servidor
+const porta = process.env.PORT || 3000; // Atualizado para usar a porta do ambiente se disponível
 app.listen(porta, () => {
   console.log(`Servidor iniciado na porta ${porta}`);
 });

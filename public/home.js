@@ -20,12 +20,8 @@ function controlarBotoes() {
             });
             break;
         case 'gerente':
-            // O gerente vê todos os botões, exceto Ata Vendedor
-            document.querySelectorAll('.dashboard').forEach(dashboard => {
-                if (dashboard.id !== 'ata-vendedor') {
-                    dashboard.style.display = 'block';
-                }
-            });
+            // O gerente vê apenas o botão Ata Vendedor
+            document.getElementById('ata-vendedor').style.display = 'block';
             break;
         case 'vendedor':
             // O vendedor vê apenas o botão Ata Vendedor
