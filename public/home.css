@@ -128,6 +128,7 @@ footer {
         max-width: 80%; /* Ajusta a largura máxima do logo */
         margin: 0 auto; /* Centraliza o logo horizontalmente */
         display: block; /* Garante que o logo seja tratado como bloco */
+        height: auto; /* Garante que a altura da logo seja ajustada proporcionalmente */
     }
 
     .logo-background {
@@ -144,7 +145,8 @@ footer {
 /* Ajustes para telas de até 480px de largura (celulares em modo retrato) */
 @media (max-width: 480px) {
     .logo {
-        max-width: 50%; /* Ajusta a largura máxima do logo para telas muito pequenas */
+        max-width: 80%; /* Ajusta a largura máxima do logo para telas muito pequenas */
+        height: auto; /* Garante que a altura da logo seja ajustada proporcionalmente */
     }
 
     .logo-background {
@@ -157,3 +159,4 @@ footer {
         padding: 5px; /* Ajusta o preenchimento para telas menores */
     }
 }
+
