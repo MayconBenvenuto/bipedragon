@@ -39,10 +39,9 @@ header {
 }
 
 /* Estilo para a imagem do logo */
-/* Estilo para a imagem do logo */
 .logo {
     width: 100%; /* Ajusta a largura do logo para 100% */
-    max-width: 900px; /* Limita a largura máxima para a imagem do logo */
+    max-width: 850px; /* Limita a largura máxima para a imagem do logo */
     margin: 0 auto; /* Centraliza o logo horizontalmente */
     position: absolute; /* Posiciona o logo de forma absoluta */
     top: -800%; /* Posiciona o logo no topo da página */
@@ -117,27 +116,44 @@ footer {
 }
 
 /* Responsividade para dispositivos móveis */
+
+/* Ajustes para telas de até 768px de largura (tablets e celulares em modo paisagem) */
 @media (max-width: 768px) {
+    body::before {
+        background-size: cover; /* Faz a imagem de fundo cobrir toda a área visível */
+        background-position: center; /* Centraliza a imagem de fundo */
+    }
+    
     .logo {
-        max-width: 80%; /* Ajusta a largura máxima do logo para telas menores */
-        top: 0; /* Garante que o logo fique no topo */
+        max-width: 80%; /* Ajusta a largura máxima do logo */
+        margin: 0 auto; /* Centraliza o logo horizontalmente */
+        display: block; /* Garante que o logo seja tratado como bloco */
     }
 
     .logo-background {
-        height: 80px; /* Ajusta a altura da camada de fundo para telas menores */
-        top: 100%; /* Garante que fique abaixo do logo */
+        height: 80px; /* Ajusta a altura da camada de fundo */
+        margin-top: 10px; /* Adiciona um espaço entre o logo e a camada de fundo */
     }
-    .container{
-        margin: 70px; /* Ajusta a margem para telas menores */
+
+    .container {
+        margin: 20px; /* Ajusta a margem para evitar excesso de espaço nas bordas */
+        padding: 10px; /* Adiciona um pouco de preenchimento para melhor visualização */
     }
 }
 
+/* Ajustes para telas de até 480px de largura (celulares em modo retrato) */
 @media (max-width: 480px) {
     .logo {
-        max-width: 70%; /* Ajusta a largura máxima do logo para telas muito pequenas */
+        max-width: 50%; /* Ajusta a largura máxima do logo para telas muito pequenas */
     }
 
     .logo-background {
-        height: 60px; /* Ajusta a altura da camada de fundo para telas muito pequenas */
+        height: 60px; /* Ajusta a altura da camada de fundo */
+        margin-top: 5px; /* Ajusta o espaço entre o logo e a camada de fundo */
+    }
+
+    .container {
+        margin: 10px; /* Reduz a margem para telas muito pequenas */
+        padding: 5px; /* Ajusta o preenchimento para telas menores */
     }
 }
