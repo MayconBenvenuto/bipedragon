@@ -81,7 +81,7 @@ header {
 
 /* Botões de dashboard */
 .btn-2 {
-    display: inline-block;
+    display: grid;
     padding: 12px 24px;
     background-color: #ffffff;
     color: #410101;
@@ -94,6 +94,7 @@ header {
     margin-top: 10px; /* Reduz a margem superior para aproximar os botões do topo */
     z-index: 104; /* Garante que os botões estejam à frente de outros elementos */
     position: relative; /* Para garantir que o z-index funcione */
+    cursor: pointer; /* Adiciona um cursor para indicar que o botão pode ser clicado */
 }
 
 .btn-2:hover {
@@ -119,58 +120,96 @@ footer {
 
 /* Ajustes para telas de até 768px de largura (tablets e celulares em modo paisagem) */
 @media (max-width: 768px) {
-    body{
-        overflow: scroll !important;
+    body {
+        overflow: hidden !important;
+        position: relative; /* Adiciona posição relativa para o ::before */
     }
+    
     body::before {
+        content: ""; /* Adiciona conteúdo vazio para o ::before funcionar */
         display: block;
         position: absolute;
+        top: 0; /* Garante que o ::before cubra toda a área visível */
+        left: 0;
+        right: 0;
+        bottom: 0;
         background-size: cover; /* Faz a imagem de fundo cobrir toda a área visível */
         background-position: center; /* Centraliza a imagem de fundo */
+        z-index: -1; /* Coloca a imagem de fundo atrás do conteúdo */
     }
     
     .logo {
-        max-width: 80%; /* Ajusta a largura máxima do logo */
-        margin: 0 auto; /* Centraliza o logo horizontalmente */
+        max-width: 100%; /* Ajusta a largura máxima do logo */
+        margin: 20px auto; /* Centraliza o logo horizontalmente */
         display: block; /* Garante que o logo seja tratado como bloco */
-        height: 500px; /* Garante que a altura da logo seja ajustada proporcionalmente */
-    }
-
-    .logo-background {
-        height: 80px; /* Ajusta a altura da camada de fundo */
-        margin-top: 10px; /* Adiciona um espaço entre o logo e a camada de fundo */
+        height: auto; /* Garante que a altura da logo seja ajustada proporcionalmente */
     }
     
+    .btn-2{
+        display: flex;
+        align-items: center; /* Centraliza os botões horizontalmente */
+        margin-top: 0; /* Remove a margem superior para aproximar os botões do topo */
+        width: 30%; /* Ajusta a largura do botão para 100% */
+        margin-bottom: 5px; /* Adiciona um pouco de espaço entre os botões */
+        justify-content: center; /* Centraliza os botões verticalmente */
+        align-items: center; /* Centraliza os botões verticalmente */
+        font-size: medium; /* Ajusta o tamanho da fonte */
+        padding: 10px 20px; /* Ajusta o padding do botão */
+        z-index: 104; /* Garante que os botões estejam à frente de outros elementos */
+        position: relative; /* Para garantir que o z-index funcione */
+        margin-left: auto;
+        margin-right: auto;
+
+
+    }
+
     .container {
+        display: flex;
+        flex-direction: column; /* Alinha o conteúdo em coluna para melhor visualização em telas pequenas */
         margin: 10px; /* Ajusta a margem para evitar excesso de espaço nas bordas */
         padding: 10px; /* Adiciona um pouco de preenchimento para melhor visualização */
-        margin-top: 15%;
+        margin-top: 15%; /* Ajusta o espaço entre o conteúdo e o rodapé */
+    }
+    
+    footer {
+        padding: 10px; /* Ajusta o padding para o rodapé */
+        margin-top: 10px; /* Ajusta o espaço entre o rodapé e o conteúdo */
+        text-align: left; /* Ajusta o alinhamento do texto do rodapé */
+        font-size: 0.8em; /* Ajusta o tamanho da fonte do rodapé */
+        text-align: left; /* Ajusta o alinhamento do texto do rodapé */
+        margin-bottom: 0; /* Remove a margem inferior do rodapé para evitar excesso de espaço nas bordas */
     }
 }
 
 /* Ajustes para telas de até 480px de largura (celulares em modo retrato) */
 @media (max-width: 480px) {
+    body {
+        overflow: hidden;
+    }
+    
     .logo {
         max-width: 100%; /* Ajusta a largura máxima do logo para telas muito pequenas */
         height: 500px; /* Garante que a altura da logo seja ajustada proporcionalmente */
-        
-    }
-    
-    .logo-background {
-        height: 60px; /* Ajusta a altura da camada de fundo */
-        margin-top: 5px; /* Ajusta o espaço entre o logo e a camada de fundo */
+        /*margin: 10px 0; /* Ajusta a margem para telas muito pequenas */
     }
     
     .container {
-        height: 50%;
-        margin: 10px; /* Reduz a margem para telas muito pequenas */
+        display: flex;
+        flex-direction: column; /* Garante que o conteúdo se ajuste em telas pequenas */
+        height: auto; /* Ajusta a altura do container para telas pequenas */
+        margin: 5px; /* Reduz a margem para telas muito pequenas */
         padding: 5px; /* Ajusta o preenchimento para telas menores */
-        margin-top: 40%; /* Adiciona um espaço entre o rodapé e o conteúdo */
-
+        margin-top: 20%; /* Ajusta o espaço entre o conteúdo e o rodapé */
     }
-    footer{
-        padding: 0%; /* Ajusta o padding para o rodapé */
-        margin-top: 100%; /* Adiciona um espaço entre o rodapé e o conteúdo */
+    
+    footer {
+        padding: 5px; /* Ajusta o padding para o rodapé */
+        margin-top: 10px; /* Ajusta o espaço entre o rodapé e o conteúdo */
+        text-align: left; /* Ajusta o alinhamento do texto do rodapé */
+        font-size: 0.8em; /* Ajusta o tamanho da fonte do rodapé */
+        margin-bottom: 0; /* Remove a margem inferior do rodapé para evitar excesso de espaço nas bordas */
+        margin-top: 10px; /* Ajusta o espaço entre o rodapé e o conteúdo */
+        width: 100%; /* Ajusta a largura do rodapé para telas pequenas */
+        text-align: center; /* Centraliza o texto do rodapé horizontalmente */
     }
 }
-
