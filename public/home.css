@@ -119,7 +119,12 @@ footer {
 
 /* Ajustes para telas de até 768px de largura (tablets e celulares em modo paisagem) */
 @media (max-width: 768px) {
+    body{
+        overflow: scroll !important;
+    }
     body::before {
+        display: block;
+        position: absolute;
         background-size: cover; /* Faz a imagem de fundo cobrir toda a área visível */
         background-position: center; /* Centraliza a imagem de fundo */
     }
@@ -137,9 +142,9 @@ footer {
     }
     
     .container {
-        margin: 20px; /* Ajusta a margem para evitar excesso de espaço nas bordas */
+        margin: 10px; /* Ajusta a margem para evitar excesso de espaço nas bordas */
         padding: 10px; /* Adiciona um pouco de preenchimento para melhor visualização */
-        margin-top: 20%;
+        margin-top: 15%;
     }
 }
 
