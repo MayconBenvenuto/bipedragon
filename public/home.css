@@ -128,35 +128,44 @@ footer {
         max-width: 80%; /* Ajusta a largura máxima do logo */
         margin: 0 auto; /* Centraliza o logo horizontalmente */
         display: block; /* Garante que o logo seja tratado como bloco */
-        height: auto; /* Garante que a altura da logo seja ajustada proporcionalmente */
+        height: 500px; /* Garante que a altura da logo seja ajustada proporcionalmente */
     }
 
     .logo-background {
         height: 80px; /* Ajusta a altura da camada de fundo */
         margin-top: 10px; /* Adiciona um espaço entre o logo e a camada de fundo */
     }
-
+    
     .container {
         margin: 20px; /* Ajusta a margem para evitar excesso de espaço nas bordas */
         padding: 10px; /* Adiciona um pouco de preenchimento para melhor visualização */
+        margin-top: 20%;
     }
 }
 
 /* Ajustes para telas de até 480px de largura (celulares em modo retrato) */
 @media (max-width: 480px) {
     .logo {
-        max-width: 80%; /* Ajusta a largura máxima do logo para telas muito pequenas */
-        height: auto; /* Garante que a altura da logo seja ajustada proporcionalmente */
+        max-width: 100%; /* Ajusta a largura máxima do logo para telas muito pequenas */
+        height: 500px; /* Garante que a altura da logo seja ajustada proporcionalmente */
+        
     }
-
+    
     .logo-background {
         height: 60px; /* Ajusta a altura da camada de fundo */
         margin-top: 5px; /* Ajusta o espaço entre o logo e a camada de fundo */
     }
-
+    
     .container {
+        height: 50%;
         margin: 10px; /* Reduz a margem para telas muito pequenas */
         padding: 5px; /* Ajusta o preenchimento para telas menores */
+        margin-top: 40%; /* Adiciona um espaço entre o rodapé e o conteúdo */
+
+    }
+    footer{
+        padding: 0%; /* Ajusta o padding para o rodapé */
+        margin-top: 100%; /* Adiciona um espaço entre o rodapé e o conteúdo */
     }
 }
 
