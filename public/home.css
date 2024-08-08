@@ -50,7 +50,6 @@ header {
     z-index: 1; /* Garante que o logo esteja à frente de outros elementos */
 }
 
-
 /* Estilo para o container principal */
 .container {
     padding: 20px; /* Ajusta o padding para melhor ajuste em dispositivos móveis */
@@ -86,7 +85,7 @@ header {
     background-color: #ffffff;
     color: #410101;
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: 50px; /* Torna os botões arredondados */
     font-size: large; /* Ajusta o tamanho da fonte */
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
@@ -95,6 +94,7 @@ header {
     z-index: 104; /* Garante que os botões estejam à frente de outros elementos */
     position: relative; /* Para garantir que o z-index funcione */
     cursor: pointer; /* Adiciona um cursor para indicar que o botão pode ser clicado */
+    text-align: center; /* Centraliza o texto no botão */
 }
 
 .btn-2:hover {
@@ -106,23 +106,47 @@ header {
     background-color: #FF6F00;
 }
 
-/* Estilo para o rodapé */
-footer {
-    padding: 44%; /* Ajusta o padding para o rodapé */
-    text-align: center;
-    color: #020202;
-    font-size: 0.9em;
-    z-index: 105; /* Garante que o rodapé esteja à frente dos elementos de fundo */
-    position: relative; /* Para garantir que o z-index funcione */
+.btn-suporte {
+    padding: 12px 24px;
+    background-color: #ffffff;
+    color: #410101;
+    text-decoration: none;
+    border-radius: 50px; /* Torna os botões arredondados */
+    font-size: large; /* Ajusta o tamanho da fonte */
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    position: fixed; /* Ajusta a posição para fixo */
+    bottom: 20px; /* Distância do botão do fundo da tela */
+    right: 20px; /* Distância do botão da lateral direita da tela */
+    z-index: 9999; /* Garante que o botão esteja acima de todos os outros elementos */
+    cursor: pointer; /* Adiciona um cursor para indicar que o botão pode ser clicado */
+    text-align: center; /* Centraliza o texto no botão */
+    width: auto; /* Ajusta a largura do botão */
+    height: auto; /* Ajusta a altura do botão */
 }
+
+
+
+.btn-suporte:hover {
+    background-color: #FF8F00;
+    transform: scale(1.05);
+}
+
+.btn-suporte:active {
+    background-color: #FF6F00;
+}
+
+
 
 /* Responsividade para dispositivos móveis */
 
 /* Ajustes para telas de até 768px de largura (tablets e celulares em modo paisagem) */
 @media (max-width: 768px) {
     body {
-        overflow: hidden !important;
-        position: relative; /* Adiciona posição relativa para o ::before */
+        font-size: 16px; /* Reduz o tamanho da fonte para celulares */
+        overflow: hidden; /* Esconde a barra de rolagem horizontal */
+
     }
     
     body::before {
@@ -138,78 +162,60 @@ footer {
         z-index: -1; /* Coloca a imagem de fundo atrás do conteúdo */
     }
     
-    .logo {
-        max-width: 100%; /* Ajusta a largura máxima do logo */
-        margin: 20px auto; /* Centraliza o logo horizontalmente */
-        display: block; /* Garante que o logo seja tratado como bloco */
-        height: auto; /* Garante que a altura da logo seja ajustada proporcionalmente */
+    .logo{
+        width: 100%; /* Ajusta a largura do logo para celulares menores */
+        margin-top: 20px;
+        max-width: 500px; /* Limita a largura máxima para a imagem do logo */
+        /*margin: 0 auto; /* Centraliza o logo horizontalmente */
+        top: -500%; /* Posiciona o logo no topo da página */
+        left: 50%;
+        transform: translateX(-50%); /* Centraliza o logo horizontalmente */
+
+    }
+    .container{
+        display: grid;
+        margin-top: 100px; /* Ajusta a margem superior para celulares menores */
+        padding: 10px; /* Ajusta o padding para melhor ajuste em celulares */
+        width: 100%; /* Ajusta a largura para celulares menores */
+        text-align: center; /* Centraliza o texto no container */
+    }
+    .btn-suporte{
+        font-size: small; /* Ajusta o tamanho da fonte */
+        padding: 8px 16px; /* Ajusta o padding do botão */
+        margin-bottom: 20px; /* Ajusta a margem inferior para melhor ajuste em celulares */
+        width: 100%; /* Ajusta a largura do botão */
+        height: auto; /* Ajusta a altura do botão */
+        max-width: 250px; /* Limita a largura máxima para a imagem do botão */
+        margin: 0 auto; /* Centraliza o botão horizontalmente */
+        transition: background-color 0.3s ease, transform 0.2s ease; /* Ajusta a transição */
+        
     }
     
-    .btn-2{
-        display: flex;
-        align-items: center; /* Centraliza os botões horizontalmente */
-        margin-top: 0; /* Remove a margem superior para aproximar os botões do topo */
-        width: 30%; /* Ajusta a largura do botão para 100% */
-        margin-bottom: 5px; /* Adiciona um pouco de espaço entre os botões */
-        justify-content: center; /* Centraliza os botões verticalmente */
-        align-items: center; /* Centraliza os botões verticalmente */
-        font-size: medium; /* Ajusta o tamanho da fonte */
-        padding: 10px 20px; /* Ajusta o padding do botão */
-        z-index: 104; /* Garante que os botões estejam à frente de outros elementos */
-        position: relative; /* Para garantir que o z-index funcione */
-        margin-left: auto;
-        margin-right: auto;
-
-
-    }
-
-    .container {
-        display: flex;
-        flex-direction: column; /* Alinha o conteúdo em coluna para melhor visualização em telas pequenas */
-        margin: 10px; /* Ajusta a margem para evitar excesso de espaço nas bordas */
-        padding: 10px; /* Adiciona um pouco de preenchimento para melhor visualização */
-        margin-top: 15%; /* Ajusta o espaço entre o conteúdo e o rodapé */
-    }
-    
-    footer {
-        padding: 10px; /* Ajusta o padding para o rodapé */
-        margin-top: 10px; /* Ajusta o espaço entre o rodapé e o conteúdo */
-        text-align: left; /* Ajusta o alinhamento do texto do rodapé */
-        font-size: 0.8em; /* Ajusta o tamanho da fonte do rodapé */
-        text-align: left; /* Ajusta o alinhamento do texto do rodapé */
-        margin-bottom: 0; /* Remove a margem inferior do rodapé para evitar excesso de espaço nas bordas */
-    }
 }
 
-/* Ajustes para telas de até 480px de largura (celulares em modo retrato) */
+/* Ajustes específicos para celulares em modo retrato */
 @media (max-width: 480px) {
-    body {
-        overflow: hidden;
+    .logo{
+        width: 100%; /* Ajusta a largura do logo para celulares menores */
+        margin-top: 20px;
+        max-width: 300px; /* Limita a largura máxima para a imagem do logo */
+        /*margin: 0 auto; /* Centraliza o logo horizontalmente */
+        top: -300%; /* Posiciona o logo no topo da página */
+        left: 50%;
+        transform: translateX(-50%); /* Centraliza o logo horizontalmente */
+    }
+    .btn-suporte {
+        padding: 8px 16px;
+        max-width: 200px; /* Limita a largura máxima para a imagem do botão */
+        margin-bottom: 90px;
     }
     
+    .btn-2 {
+        font-size: small; /* Ajusta o tamanho da fonte dos botões */
+        padding: 8px 16px; /* Ajusta o padding dos botões */
+    }
+
     .logo {
-        max-width: 100%; /* Ajusta a largura máxima do logo para telas muito pequenas */
-        height: 500px; /* Garante que a altura da logo seja ajustada proporcionalmente */
-        /*margin: 10px 0; /* Ajusta a margem para telas muito pequenas */
-    }
-    
-    .container {
-        display: flex;
-        flex-direction: column; /* Garante que o conteúdo se ajuste em telas pequenas */
-        height: auto; /* Ajusta a altura do container para telas pequenas */
-        margin: 5px; /* Reduz a margem para telas muito pequenas */
-        padding: 5px; /* Ajusta o preenchimento para telas menores */
-        margin-top: 20%; /* Ajusta o espaço entre o conteúdo e o rodapé */
-    }
-    
-    footer {
-        padding: 5px; /* Ajusta o padding para o rodapé */
-        margin-top: 10px; /* Ajusta o espaço entre o rodapé e o conteúdo */
-        text-align: left; /* Ajusta o alinhamento do texto do rodapé */
-        font-size: 0.8em; /* Ajusta o tamanho da fonte do rodapé */
-        margin-bottom: 0; /* Remove a margem inferior do rodapé para evitar excesso de espaço nas bordas */
-        margin-top: 10px; /* Ajusta o espaço entre o rodapé e o conteúdo */
-        width: 100%; /* Ajusta a largura do rodapé para telas pequenas */
-        text-align: center; /* Centraliza o texto do rodapé horizontalmente */
+        width: 80%; /* Ajusta a largura do logo para celulares menores */
     }
 }
