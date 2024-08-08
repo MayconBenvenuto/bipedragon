@@ -179,11 +179,23 @@ header {
         width: 100%; /* Ajusta a largura para celulares menores */
         text-align: center; /* Centraliza o texto no container */
     }
-    .btn-suporte{
-        font-size: small; /* Ajusta o tamanho da fonte */
-        padding: 8px 16px; /* Ajusta o padding do botão */
+    .btn-2{
+        display: grid;
+        font-size: medium; /* Ajusta o tamanho da fonte */
+        padding: 10px 20px; /* Ajusta o padding do botão */
         margin-bottom: 20px; /* Ajusta a margem inferior para melhor ajuste em celulares */
         width: 100%; /* Ajusta a largura do botão */
+        height: auto; /* Ajusta a altura do botão */
+        max-width: 200px; /* Limita a largura máxima para a imagem do botão */
+        margin: 0 auto; /* Centraliza o botão horizontalmente */
+        transition: background-color 0.3s ease, transform 0.2s ease; /* Ajusta a transição */
+
+    }
+    .btn-suporte{
+        font-size: small; /* Ajusta o tamanho da fonte */
+        padding: 8px 8px; /* Ajusta o padding do botão */
+        margin-bottom: 20px; /* Ajusta a margem inferior para melhor ajuste em celulares */
+        width: 10%; /* Ajusta a largura do botão */
         height: auto; /* Ajusta a altura do botão */
         max-width: 250px; /* Limita a largura máxima para a imagem do botão */
         margin: 0 auto; /* Centraliza o botão horizontalmente */
