@@ -209,7 +209,7 @@ header {
 @media (max-width: 480px) {
     .logo{
         width: 100%; /* Ajusta a largura do logo para celulares menores */
-        margin-top: 20px;
+        margin-top: 40px;
         max-width: 300px; /* Limita a largura máxima para a imagem do logo */
         /*margin: 0 auto; /* Centraliza o logo horizontalmente */
         top: -300%; /* Posiciona o logo no topo da página */
