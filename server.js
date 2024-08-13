@@ -24,7 +24,8 @@ const usuarios = {
   'leo.coelho': { senha: 'pedragon@2024', nivel: 'diretor' },
   'tiago.vilaca': { senha: 'pedragon2024@', nivel: 'diretor' },
   'vendedor':{senha: 'vendedor', nivel: 'vendedor'},
-  'gerente': {senha: 'gerente', nivel: 'gerente'}
+  'gerente': {senha: 'gerente', nivel: 'gerente'},
+  'diretor': {senha: 'diretor', nivel: 'diretor'}
 };
 
 // Rota para a página de login
