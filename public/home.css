@@ -44,7 +44,7 @@ header {
     max-width: 850px; /* Limita a largura máxima para a imagem do logo */
     margin: 0 auto; /* Centraliza o logo horizontalmente */
     position: absolute; /* Posiciona o logo de forma absoluta */
-    top: -800%; /* Posiciona o logo no topo da página */
+    top: -500%; /* Posiciona o logo no topo da página */
     left: 50%;
     transform: translateX(-50%); /* Centraliza o logo horizontalmente */
     z-index: 1; /* Garante que o logo esteja à frente de outros elementos */
@@ -56,7 +56,7 @@ header {
     width: 90%;
     max-width: 1200px; /* Aumenta a largura máxima para telas maiores */
     text-align: center;
-    margin: 10%; /* Ajusta a margem para mais próximo do cabeçalho */
+    margin: 30%; /* Ajusta a margem para mais próximo do cabeçalho */
     position: relative;
     z-index: 102; /* Garante que o conteúdo esteja à frente dos elementos de fundo */
 }
