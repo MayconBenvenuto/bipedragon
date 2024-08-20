@@ -121,8 +121,8 @@ header {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
     transition: background-color 0.3s ease, transform 0.2s ease;
     position: fixed; /* Ajusta a posição para fixo */
-    bottom: 20px; /* Distância do botão do fundo da tela */
-    right: 20px; /* Distância do botão da lateral direita da tela */
+    bottom: 40px; /* Distância do botão do fundo da tela */
+    right: 10%; /* Distância do botão da lateral direita da tela */
     z-index: 9999; /* Garante que o botão esteja acima de todos os outros elementos */
     cursor: pointer; /* Adiciona um cursor para indicar que o botão pode ser clicado */
     text-align: center; /* Centraliza o texto no botão */
@@ -146,7 +146,7 @@ header {
 /* Responsividade para dispositivos móveis */
 
 /* Ajustes para telas de até 768px de largura (tablets e celulares em modo paisagem) */
-@media (max-width: 768px) {
+@media (max-width: 1080px) {
     header{
         position: fixed;
         top: 30%;
@@ -191,7 +191,7 @@ header {
         flex-wrap: wrap;
         justify-content: center;
         gap: 10px; /* Espaço entre os dashboards */
-        margin-top: 70px;
+        margin-top: 10px;
     }
     .btn-2{
         display: grid;
@@ -209,7 +209,7 @@ header {
         font-size: small; /* Ajusta o tamanho da fonte */
         padding: 8px 8px; /* Ajusta o padding do botão */
         margin-bottom: 20px; /* Ajusta a margem inferior para melhor ajuste em celulares */
-        width: 10%; /* Ajusta a largura do botão */
+        width: 15%; /* Ajusta a largura do botão */
         height: auto; /* Ajusta a altura do botão */
         max-width: 250px; /* Limita a largura máxima para a imagem do botão */
         margin: 0 auto; /* Centraliza o botão horizontalmente */
@@ -220,7 +220,7 @@ header {
 }
 
 /* Ajustes específicos para celulares em modo retrato */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     body{
         overflow: hidden;
     }
@@ -239,7 +239,7 @@ header {
 
     header{
         position: fixed;
-        top: 15%;
+        top: 10%;
         left: 50%;
         transform: translateX(-50%);
         width: 75%; /* Ajusta a largura do cabeçalho para 100% */
@@ -259,7 +259,7 @@ header {
     .btn-suporte {
         padding: 8px 16px;
         max-width: 200px; /* Limita a largura máxima para a imagem do botão */
-        margin-bottom: 90px;
+        margin-bottom: 10%;
     }
     
     .btn-2 {
@@ -275,6 +275,6 @@ header {
         flex-wrap: wrap;
         justify-content: center;
         gap: 20px; /* Espaço entre os dashboards */
-        margin-top: 70px;
+        margin-top: 30%;
     }
 }
