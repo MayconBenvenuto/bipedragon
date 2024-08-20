@@ -24,6 +24,7 @@ body::before {
     background-attachment: fixed;
     z-index: -10; /* Coloca a imagem de fundo atrás de todo o conteúdo */
     opacity: 0.1; /* Ajusta a opacidade para dar um efeito de transparência */
+    overflow: hidden;
 }
 
 /* Estilo para o cabeçalho */
@@ -53,21 +54,23 @@ header {
 /* Estilo para o container principal */
 .container {
     padding: 20px; /* Ajusta o padding para melhor ajuste em dispositivos móveis */
-    width: 90%;
-    max-width: 1200px; /* Aumenta a largura máxima para telas maiores */
+    width: 100%;
+    max-width: 2200px; /* Aumenta a largura máxima para telas maiores */
     text-align: center;
     margin: 15%; /* Ajusta a margem para mais próximo do cabeçalho */
-    position: relative;
+    /*position: relative;*/
     z-index: 102; /* Garante que o conteúdo esteja à frente dos elementos de fundo */
+    overflow: hidden;
 }
 
 /* Estilo para a seção de dashboards */
 #dashboards-container {
     display: grid;
-    flex-wrap: wrap;
+    /*flex-wrap: wrap;*/
     justify-content: center;
     gap: 20px; /* Espaço entre os dashboards */
     margin-top: 20px;
+    overflow: hidden;
 }
 
 /* Estilo para cada dashboard */
@@ -76,6 +79,7 @@ header {
     margin: 10px;
     z-index: 103; /* Garante que os dashboards estejam à frente dos elementos de fundo */
     transition: transform 0.2s ease;
+    
 }
 
 /* Botões de dashboard */
@@ -145,7 +149,7 @@ header {
 @media (max-width: 768px) {
     header{
         position: fixed;
-        top: 15%;
+        top: 30%;
         left: 50%;
         transform: translateX(-50%);
         width: 25%; /* Ajusta a largura do cabeçalho para 100% */
@@ -156,6 +160,7 @@ header {
     body {
         font-size: 16px; /* Reduz o tamanho da fonte para celulares */
         overflow: hidden; /* Esconde a barra de rolagem horizontal */
+        overflow-y: hidden;
 
     }
     
@@ -164,14 +169,11 @@ header {
         display: block;
         position: absolute;
         background-image: url('imagens/fundopngf.jpg');
-        top: 0; /* Garante que o ::before cubra toda a área visível */
-        left: 0;
-        right: 0;
-        bottom: 0;
         background-size: cover; /* Faz a imagem de fundo cobrir toda a área visível */
         background-position: center; /* Centraliza a imagem de fundo */
         z-index: -1; /* Coloca a imagem de fundo atrás do conteúdo */
         opacity: 0.4;
+        overflow: hidden;
     }
     
     .logo{
@@ -184,12 +186,12 @@ header {
         transform: translateX(-50%); /* Centraliza o logo horizontalmente */
 
     }
-    .container{
-        display: grid;
-        margin-top: 100px; /* Ajusta a margem superior para celulares menores */
-        padding: 10px; /* Ajusta o padding para melhor ajuste em celulares */
-        width: 100%; /* Ajusta a largura para celulares menores */
-        text-align: center; /* Centraliza o texto no container */
+    #dashboards-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px; /* Espaço entre os dashboards */
+        margin-top: 70px;
     }
     .btn-2{
         display: grid;
@@ -219,12 +221,28 @@ header {
 
 /* Ajustes específicos para celulares em modo retrato */
 @media (max-width: 480px) {
+    body{
+        overflow: hidden;
+    }
+
+    body::before {
+        content: ""; /* Adiciona conteúdo vazio para o ::before funcionar */
+        display: block;
+        position: absolute;
+        background-image: url('imagens/fundopngf.jpg');
+        background-size: cover; /* Faz a imagem de fundo cobrir toda a área visível */
+        background-position: center; /* Centraliza a imagem de fundo */
+        z-index: -1; /* Coloca a imagem de fundo atrás do conteúdo */
+        opacity: 0.4;
+        overflow: hidden;
+    }
+
     header{
         position: fixed;
         top: 15%;
         left: 50%;
         transform: translateX(-50%);
-        width: 80%; /* Ajusta a largura do cabeçalho para 100% */
+        width: 75%; /* Ajusta a largura do cabeçalho para 100% */
         text-align: center;
         padding: 20px 0; /* Reduz o padding para aproximar o cabeçalho do topo */
         z-index: 100; /* Garante que o cabeçalho esteja visível sobre todos os outros elementos */
@@ -252,11 +270,11 @@ header {
     .logo {
         width: 80%; /* Ajusta a largura do logo para celulares menores */
     }
-    .container{
+    #dashboards-container {
         display: grid;
-        margin-top: 100px; /* Ajusta a margem superior para celulares menores */
-        padding: 50px; /* Ajusta o padding para melhor ajuste em celulares */
-        width: 80%; /* Ajusta a largura para celulares menores */
-        text-align: center; /* Centraliza o texto no container */
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px; /* Espaço entre os dashboards */
+        margin-top: 70px;
     }
 }
