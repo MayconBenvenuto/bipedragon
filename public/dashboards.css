@@ -66,14 +66,12 @@ footer {
     .container {
         width: 100%;
         height: 100vh; /* Ajusta a altura para 100% da altura da tela */
-        overflow: hidden; /* Remove a rolagem horizontal e vertical */   
     }
 }
 
 @media (max-width: 768px) {
     .container {
         padding: 0 20px; /* Adiciona padding horizontal para evitar que o conteúdo toque nas bordas */
-        overflow: hidden; /* Remove a rolagem horizontal e vertical */   
     }
     h1 {
         font-size: 2em;
@@ -88,10 +86,9 @@ footer {
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 450px) {
     .container {
         padding: 0 10px; /* Adiciona padding horizontal menor para dispositivos muito pequenos */
-        overflow: hidden; /* Remove a rolagem horizontal e vertical */   
     }
     h1 {
         font-size: 1.5em;
