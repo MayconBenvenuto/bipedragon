@@ -7,7 +7,7 @@ body {
     flex-direction: column;
     align-items: center;
     position: relative;
-    /*overflow: hidden;*/
+    overflow: hidden;
     box-sizing: border-box; /* Remove a rolagem horizontal e vertical */   
     background: linear-gradient(to right, rgba(255, 255, 255, 0.8), rgb(2, 204, 255)); /* Fundo com transparência */
 }
@@ -31,10 +31,10 @@ body::before {
 /* Estilo para o cabeçalho */
 header {
     position: fixed;
-    top: 20%;
+    top: 13%;
     left: 50%;
     transform: translateX(-50%);
-    width: 20%; /* Ajusta a largura do cabeçalho para 100% */
+    width: 30%; /* Ajusta a largura do cabeçalho para 100% */
     text-align: center;
     padding: 10px 0; /* Reduz o padding para aproximar o cabeçalho do topo */
     z-index: 100; /* Garante que o cabeçalho esteja visível sobre todos os outros elementos */
@@ -59,7 +59,6 @@ header {
     max-width: 2200px; /* Aumenta a largura máxima para telas maiores */
     text-align: center;
     margin: 15%; /* Ajusta a margem para mais próximo do cabeçalho */
-    /*position: relative;*/
     z-index: 102; /* Garante que o conteúdo esteja à frente dos elementos de fundo */
     box-sizing: border-box;
 }
@@ -67,7 +66,6 @@ header {
 /* Estilo para a seção de dashboards */
 #dashboards-container {
     display: grid;
-    /*flex-wrap: wrap;*/
     justify-content: center;
     gap: 20px; /* Espaço entre os dashboards */
     margin-top: 20px;

@@ -91,6 +91,17 @@ app.get('/dashboard/:pagina', verificarPermissao, (req, res) => {
   }
 });
 
+// Rota para baixar o PDF
+app.get('/download-pdf', (req, res) => {
+  const file = path.join(__dirname, 'pdfs', 'POP.pdf');
+  res.download(file, 'POP.pdf', (err) => {
+      if (err) {
+          console.error('Erro ao baixar o arquivo:', err);
+          res.status(500).send('Erro ao baixar o arquivo');
+      }
+  });
+});
+
 // Inicia o servidor
 const porta = process.env.PORT || 3000;
 app.listen(porta, () => {
