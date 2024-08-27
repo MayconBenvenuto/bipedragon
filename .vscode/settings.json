@@ -13,5 +13,6 @@
             "database": "railway",
             "username": "root"
         }
-    ]
+    ],
+    "git.ignoreLimitWarning": true
 }

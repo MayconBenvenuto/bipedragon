@@ -1,16 +1,97 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baixar PDF</title>
-    <link rel="stylesheet" href="dashboards.css">
+    <title>Visualizador de PDFs</title>
+    <link rel="stylesheet" href="pdfs.css">
 </head>
 <body>
-    <div class="cabecalho">
-        <a href="home.html" class="button home-button"><img src="imagens/botao-home.png" alt="Home Button"></a>
+    <div class="container">
+        <a href="home.html" class="home-button"><img src="imagens/botao-home.png" alt="Home Button"></a>
+        <h1>Arquivos PDF Disponíveis</h1>
+        
+        <!-- Filtros -->
+        <div class="filters">
+            <label for="yearFilter">Ano:</label>
+            <select id="yearFilter">
+                <!-- Options will be populated by JavaScript -->
+            </select>
+            
+            <label for="monthFilter">Mês:</label>
+            <select id="monthFilter">
+                <option value="">Todos</option>
+                <option value="01">Janeiro</option>
+                <option value="02">Fevereiro</option>
+                <option value="03">Março</option>
+                <option value="04">Abril</option>
+                <option value="05">Maio</option>
+                <option value="06">Junho</option>
+                <option value="07">Julho</option>
+                <option value="08">Agosto</option>
+                <option value="09">Setembro</option>
+                <option value="10">Outubro</option>
+                <option value="11">Novembro</option>
+                <option value="12">Dezembro</option>
+            </select>
+            
+            <label for="keywordFilter">Palavra-chave:</label>
+            <select id="keywordFilter">
+                <option value="">Todas</option>
+                <option value="NOVOS">NOVOS</option>
+                <option value="PECAS E ACESSORIOS">PECAS E ACESSORIOS</option>
+                <option value="USADOS">USADOS</option>
+                <option value="GERAL">GERAL</option>
+            </select>
+        </div>
+
+        <ul id="pdfList"></ul>
     </div>
-    <h1>Baixar Arquivo PDF</h1>
-    <a href="/download-pdf" download="POP.pdf">Clique aqui para baixar o PDF</a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Populate years filter
+            populateYears();
+
+            // Fetch and display files
+            fetchFiles();
+
+            // Event listeners for filters
+            document.getElementById('yearFilter').addEventListener('change', fetchFiles);
+            document.getElementById('monthFilter').addEventListener('change', fetchFiles);
+            document.getElementById('keywordFilter').addEventListener('change', fetchFiles);
+        });
+
+        function populateYears() {
+            const yearFilter = document.getElementById('yearFilter');
+            const currentYear = new Date().getFullYear();
+            
+            // Populate years from 2000 to current year
+            for (let year = 2024; year <= currentYear; year++) {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                yearFilter.appendChild(option);
+            }
+        }
+
+        function fetchFiles() {
+            const year = document.getElementById('yearFilter').value;
+            const month = document.getElementById('monthFilter').value;
+            const keyword = document.getElementById('keywordFilter').value;
+
+            fetch(`/files?year=${year}&month=${month}&keyword=${keyword}`)
+                .then(response => response.json())
+                .then(files => {
+                    const pdfList = document.getElementById('pdfList');
+                    pdfList.innerHTML = ''; // Clear previous results
+                    files.forEach(file => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `<a href="/pdfs/${file}" target="_blank">${file}</a> <a href="/pdfs/${file}" download>Download</a>`;
+                        pdfList.appendChild(li);
+                    });
+                });
+        }
+    </script>
 </body>
 </html>

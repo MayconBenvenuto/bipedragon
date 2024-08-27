@@ -2,7 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const path = require('path');
+const fs = require('fs');
 const app = express();
+const pdfDirectory = path.join(__dirname, 'pdfs'); // Caminho para a pasta dos PDFs
 
 // Configura o body parser para analisar requisições JSON e URL-encoded
 app.use(bodyParser.json());
@@ -91,15 +93,52 @@ app.get('/dashboard/:pagina', verificarPermissao, (req, res) => {
   }
 });
 
-// Rota para baixar o PDF
-app.get('/download-pdf', (req, res) => {
-  const file = path.join(__dirname, 'pdfs', 'POP.pdf');
-  res.download(file, 'POP.pdf', (err) => {
+// Configura o middleware para servir arquivos PDF
+app.use('/pdfs', express.static(pdfDirectory));
+
+app.get('/files', (req, res) => {
+  const year = req.query.year;
+  const month = req.query.month;
+  const keyword = req.query.keyword;
+
+  fs.readdir(pdfDirectory, (err, files) => {
       if (err) {
-          console.error('Erro ao baixar o arquivo:', err);
-          res.status(500).send('Erro ao baixar o arquivo');
+          return res.status(500).send('Unable to scan files!');
       }
+      
+      // Filtra apenas os arquivos PDF
+      const pdfFiles = files.filter(file => path.extname(file).toLowerCase() === '.pdf');
+      
+      // Filtra arquivos com base no ano, mês e palavra-chave
+      const filteredFiles = pdfFiles.filter(file => {
+          const match = file.match(/(\d{4})_(0[1-9]|1[0-2])_\d{2}/);
+          if (match) {
+              const fileYear = match[1];
+              const fileMonth = match[2];
+              const fileName = file.toUpperCase();
+
+              if (year && fileYear !== year) return false;
+              if (month && fileMonth !== month) return false;
+              if (keyword && !fileName.includes(keyword.toUpperCase())) return false;
+              return true;
+          }
+          return false;
+      });
+
+      res.json(filteredFiles);
   });
+});
+
+
+// Rota para visualizar um arquivo PDF
+app.get('/view/:filename', verificarPermissao, (req, res) => {
+    const filePath = path.join(pdfDirectory, req.params.filename);
+    fs.access(filePath, fs.constants.F_OK, (err) => {
+        if (err) {
+            return res.status(404).send('File not found');
+        }
+        res.sendFile(filePath);
+    });
 });
 
 // Inicia o servidor
