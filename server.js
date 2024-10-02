@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({
   secret: 'segredo',
   resave: false,
-  saveUninitialized: false // Altere para false para evitar criar sessões desnecessárias
+  saveUninitialized: true
 }));
 
 // Middleware para servir arquivos estáticos da pasta 'public'
@@ -20,26 +20,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Configura um banco de dados simples em memória para armazenar usuários
 const usuarios = {
-  'diretor': { senha: 'diretor', nivel: 'diretor' },
+  'diretor': {senha: 'diretor', nivel: 'diretor'},
   'maycon': { senha: 'Pedr@gon2024', nivel: 'diretor' },
   'leo.coelho': { senha: 'pedragon@2024', nivel: 'diretor' },
   'tiago.vilaca': { senha: 'pedragon2024@', nivel: 'diretor' },
-  'vendedor': { senha: 'vendedor', nivel: 'vendedor' },
-  'gerente': { senha: 'gerente', nivel: 'gerente' }
+  'vendedor':{senha: 'vendedor', nivel: 'vendedor'},
+  'gerente': {senha: 'gerente', nivel: 'gerente'}
 };
-
-// Middleware para verificar o nível de permissão
-function verificarPermissao(req, res, next) {
-  // Verifica se o usuário tem uma sessão ativa com nível
-  if (!req.session.nivel) {
-    return res.redirect('/login');
-  }
-  next();
-}
 
 // Rota para a página de login
 app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'login.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // Rota de login
@@ -59,23 +50,27 @@ app.post('/login', (req, res) => {
   res.redirect('/home');
 });
 
-// Rota para a página inicial (redireciona para login ou home)
-app.get('/', (req, res) => {
+// Middleware para verificar o nível de permissão
+function verificarPermissao(req, res, next) {
   if (!req.session.nivel) {
-    // Se o usuário não estiver autenticado, redireciona para a página de login
     return res.redirect('/login');
   }
+  next();
+}
+
+// Rota para obter o nível do usuário
+app.get('/api/usuario', verificarPermissao, (req, res) => {
+  res.json({ nivel: req.session.nivel });
+});
+
+// Rota para a página inicial (redireciona para /home)
+app.get('/', (req, res) => {
   res.redirect('/home');
 });
 
 // Rota para a página home
 app.get('/home', verificarPermissao, (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'home.html'));
-});
-
-// Rota para obter o nível do usuário
-app.get('/api/usuario', verificarPermissao, (req, res) => {
-  res.json({ nivel: req.session.nivel });
 });
 
 // Rota para a página ata.html
