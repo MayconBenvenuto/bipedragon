@@ -20,12 +20,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Configura um banco de dados simples em memória para armazenar usuários
 const usuarios = {
-  'diretor': {senha: 'diretor', nivel: 'diretor'},
+  'diretor': { senha: 'diretor', nivel: 'diretor' },
   'maycon': { senha: 'Pedr@gon2024', nivel: 'diretor' },
   'leo.coelho': { senha: 'pedragon@2024', nivel: 'diretor' },
   'tiago.vilaca': { senha: 'pedragon2024@', nivel: 'diretor' },
-  'vendedor':{senha: 'vendedor', nivel: 'vendedor'},
-  'gerente': {senha: 'gerente', nivel: 'gerente'}
+  'vendedor': { senha: 'vendedor', nivel: 'vendedor' },
+  'gerente': { senha: 'gerente', nivel: 'gerente' }
 };
 
 // Rota para a página de login
@@ -63,9 +63,15 @@ app.get('/api/usuario', verificarPermissao, (req, res) => {
   res.json({ nivel: req.session.nivel });
 });
 
-// Rota para a página inicial (redireciona para /home)
+// Rota para a página inicial (redireciona para login ou home)
 app.get('/', (req, res) => {
-  res.redirect('/home');
+  if (!req.session.nivel) {
+    // Se o usuário não estiver autenticado, redireciona para a página de login
+    return res.redirect('/login');
+  } else {
+    // Se estiver autenticado, redireciona para a página home
+    res.redirect('/home');
+  }
 });
 
 // Rota para a página home
@@ -95,10 +101,10 @@ app.get('/dashboard/:pagina', verificarPermissao, (req, res) => {
 app.get('/download-pdf', (req, res) => {
   const file = path.join(__dirname, 'pdfs', 'POP.pdf');
   res.download(file, 'POP.pdf', (err) => {
-      if (err) {
-          console.error('Erro ao baixar o arquivo:', err);
-          res.status(500).send('Erro ao baixar o arquivo');
-      }
+    if (err) {
+      console.error('Erro ao baixar o arquivo:', err);
+      res.status(500).send('Erro ao baixar o arquivo');
+    }
   });
 });
 
