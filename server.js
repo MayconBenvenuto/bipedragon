@@ -24,7 +24,7 @@ const usuarios = {
   'maycon': { senha: 'Pedr@gon2024', nivel: 'diretor' },
   'leo.coelho': { senha: 'pedragon@2024', nivel: 'diretor' },
   'tiago.vilaca': { senha: 'pedragon2024@', nivel: 'diretor' },
-  'vendedor':{senha: 'vendedor', nivel: 'vendedor'},
+  'vendedor': {senha: 'vendedor', nivel: 'vendedor'},
   'gerente': {senha: 'gerente', nivel: 'gerente'}
 };
 
@@ -65,7 +65,11 @@ app.get('/api/usuario', verificarPermissao, (req, res) => {
 
 // Rota para a página inicial (redireciona para /home)
 app.get('/', (req, res) => {
-  res.redirect('/home');
+  if (req.session.nivel) {
+    res.redirect('/home');
+  } else {
+    res.redirect('/login');
+  }
 });
 
 // Rota para a página home
