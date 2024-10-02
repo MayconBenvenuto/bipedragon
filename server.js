@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({
   secret: 'segredo',
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: false // Altere para false para evitar criar sessões desnecessárias
 }));
 
 // Middleware para servir arquivos estáticos da pasta 'public'
@@ -27,6 +27,15 @@ const usuarios = {
   'vendedor': { senha: 'vendedor', nivel: 'vendedor' },
   'gerente': { senha: 'gerente', nivel: 'gerente' }
 };
+
+// Middleware para verificar o nível de permissão
+function verificarPermissao(req, res, next) {
+  // Verifica se o usuário tem uma sessão ativa com nível
+  if (!req.session.nivel) {
+    return res.redirect('/login');
+  }
+  next();
+}
 
 // Rota para a página de login
 app.get('/login', (req, res) => {
@@ -50,33 +59,23 @@ app.post('/login', (req, res) => {
   res.redirect('/home');
 });
 
-// Middleware para verificar o nível de permissão
-function verificarPermissao(req, res, next) {
-  if (!req.session.nivel) {
-    return res.redirect('/login');
-  }
-  next();
-}
-
-// Rota para obter o nível do usuário
-app.get('/api/usuario', verificarPermissao, (req, res) => {
-  res.json({ nivel: req.session.nivel });
-});
-
 // Rota para a página inicial (redireciona para login ou home)
 app.get('/', (req, res) => {
   if (!req.session.nivel) {
     // Se o usuário não estiver autenticado, redireciona para a página de login
     return res.redirect('/login');
-  } else {
-    // Se estiver autenticado, redireciona para a página home
-    res.redirect('/home');
   }
+  res.redirect('/home');
 });
 
 // Rota para a página home
 app.get('/home', verificarPermissao, (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'home.html'));
+});
+
+// Rota para obter o nível do usuário
+app.get('/api/usuario', verificarPermissao, (req, res) => {
+  res.json({ nivel: req.session.nivel });
 });
 
 // Rota para a página ata.html
