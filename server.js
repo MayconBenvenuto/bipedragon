@@ -26,13 +26,13 @@ const usuarios = {
   'maycon': { senha: 'Pedr@gon2024', nivel: 'diretor' },
   'leo.coelho': { senha: 'pedragon@2024', nivel: 'diretor' },
   'tiago.vilaca': { senha: 'pedragon2024@', nivel: 'diretor' },
-  'vendedor':{senha: 'vendedor', nivel: 'vendedor'},
+  'vendedor': {senha: 'vendedor', nivel: 'vendedor'},
   'gerente': {senha: 'gerente', nivel: 'gerente'}
 };
 
 // Rota para a página de login
 app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'login.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // Rota de login
@@ -67,7 +67,11 @@ app.get('/api/usuario', verificarPermissao, (req, res) => {
 
 // Rota para a página inicial (redireciona para /home)
 app.get('/', (req, res) => {
-  res.redirect('/home');
+  if (req.session.nivel) {
+    res.redirect('/home');
+  } else {
+    res.redirect('/login');
+  }
 });
 
 // Rota para a página home
@@ -93,6 +97,7 @@ app.get('/dashboard/:pagina', verificarPermissao, (req, res) => {
   }
 });
 
+<<<<<<< HEAD
 // Configura o middleware para servir arquivos PDF
 app.use('/pdfs', express.static(pdfDirectory));
 
@@ -126,6 +131,16 @@ app.get('/files', (req, res) => {
       });
 
       res.json(filteredFiles);
+=======
+// Rota para baixar o PDF
+app.get('/download-pdf', (req, res) => {
+  const file = path.join(__dirname, 'pdfs', 'POP.pdf');
+  res.download(file, 'POP.pdf', (err) => {
+    if (err) {
+      console.error('Erro ao baixar o arquivo:', err);
+      res.status(500).send('Erro ao baixar o arquivo');
+    }
+>>>>>>> main
   });
 });
 
