@@ -1,8 +1,0 @@
-{
-  "routes": [
-    {
-      "src": "/login",
-      "dest": "/api/login"
-    }
-  ]
-}
